@@ -1,0 +1,145 @@
+[build-system]
+requires = ['setuptools >= 61.0.0']
+build-backend = 'setuptools.build_meta'
+
+[project]
+name = 'pycrostates_report'
+version = '0.1.0.dev'
+description = 'BIDS application for EEG microstates clustering.'
+readme = 'README.md'
+license = {file = 'LICENSE'}
+requires-python = '>=3.8'
+authors = [
+    {name = 'Victor Férat', email = 'victor.ferat@live.fr'},
+    {name = 'TODO', email = 'TODO@TODO.TODO'},
+]
+maintainers = [
+     {name = 'Victor Férat', email = 'victor.ferat@live.fr'},
+]
+keywords = [
+    'python',
+    'neuroscience',
+    'neuroimaging',
+    'EEG',
+    'microstates',
+    'BIDS',
+]
+classifiers = [
+    'Operating System :: Microsoft :: Windows',
+    'Operating System :: Unix',
+    'Operating System :: MacOS',
+    'Programming Language :: Python :: 3 :: Only',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Natural Language :: English',
+    'Intended Audience :: Science/Research',
+    'Intended Audience :: Developers',
+    'Topic :: Software Development',
+    'Topic :: Scientific/Engineering',
+]
+dependencies = [
+    'pycrostates',
+    'pybids',
+]
+
+[project.optional-dependencies]
+build = [
+    'build',
+    'twine',
+]
+doc = []
+
+style = [
+    'bibclean',
+    'black',
+    'codespell',
+    'isort',
+    'flake8',
+    'pydocstyle[toml]',
+]
+test = [
+    'pymatreader',
+    'pytest==7.0.1',
+    'pytest-azurepipelines',
+    'pytest-cov',
+]
+all = [
+    'pycrostates_report[build]',
+    'pycrostates_report[docs]',
+    'pycrostates_report[style]',
+    'pycrostates_report[test]',
+]
+
+[project.urls]
+homepage = 'TODO'
+documentation = 'TODO'
+source = 'TODO'
+tracker = 'TODO'
+
+[project.scripts]
+pycrostates_cluster = 'pycrostates_report.commands.cluster:main'
+
+[tool.setuptools]
+include-package-data = false
+
+[tool.setuptools.packages.find]
+include = ['pycrostates_report*']
+exclude = ['pycrostates_report*tests']
+
+[tool.setuptools.package-data]
+"pycrostates_report.html_templates" = ["*.jinja"]
+
+[tool.black]
+line-length = 79
+target-version = ['py37']
+include = '\.pyi?$'
+extend-exclude = '''
+(
+      __pycache__
+    | \.github
+    | setup.py
+    | pycrostates_report/report/html_templates/
+)
+'''
+
+[tool.isort]
+profile = 'black'
+multi_line_output = 3
+line_length = 79
+py_version = 37
+extend_skip_glob = [
+    'setup.py',
+    'pycrostates_report/report/html_templates/*',
+]
+
+[tool.pydocstyle]
+convention = 'numpy'
+ignore-decorators= '(copy_doc|property|.*setter|.*getter)'
+match = '^(?!setup|__init__|test_).*\.py'
+match-dir = '^(?!docs|tutorials|build|dist|\.).*'
+add_ignore = 'D100,D104,D107'
+
+[tool.pytest.ini_options]
+minversion = '6.0'
+addopts = '--durations 20 --junit-xml=junit-results.xml --verbose'
+filterwarnings = [
+    "ignore:Matplotlib is currently using agg:UserWarning",
+]
+
+[tool.coverage.run]
+branch = true
+cover_pylib = false
+omit = [
+    '**/__init__.py',
+    '**/pycrostates_report/_version.py',
+    '**/tests/**',
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    'pragma: no cover',
+    'if __name__ == .__main__.:',
+]
+precision = 2
