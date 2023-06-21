@@ -11,7 +11,10 @@ license = {file = 'LICENSE'}
 requires-python = '>=3.8'
 authors = [
     {name = 'Victor Férat', email = 'victor.ferat@live.fr'},
-    {name = 'TODO', email = 'TODO@TODO.TODO'},
+    {name = 'Irmak Ozarslan', email = 'irmak.ozarslan@hotmail.com'},
+    {name = 'Konstantin Toussas', email = 'ktoussas24@icloud.com'},
+    {name = 'Ovluyaguly Udayev', email = 'ovluyaguly.05@gmail.com'},
+    
 ]
 maintainers = [
      {name = 'Victor Férat', email = 'victor.ferat@live.fr'},
@@ -42,6 +45,7 @@ classifiers = [
 dependencies = [
     'pycrostates',
     'pybids',
+    'Jinja2',
 ]
 
 [project.optional-dependencies]
