@@ -1,4 +1,4 @@
 """Pycrostates-Report."""
 
-from . import viz
+from . import report
 from ._version import __version__  # noqa: F401
